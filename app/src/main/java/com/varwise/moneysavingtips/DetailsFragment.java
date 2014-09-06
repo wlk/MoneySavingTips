@@ -14,14 +14,14 @@ import com.google.android.gms.ads.AdView;
 public class DetailsFragment extends Fragment {
     private String detailsText = "";
 
-    public DetailsFragment() {    }
+    public DetailsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
         AdView adView = (AdView) rootView.findViewById(R.id.adViewDetails);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("2D7D6AE8606296EB97A2A9B3681B90F6").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("3AC2DCEE575018317C028D0C93F19AD0").addTestDevice("2D7D6AE8606296EB97A2A9B3681B90F6").build();
 
         TextView tv = (TextView) rootView.findViewById(R.id.detailsText);
         Button previousButton = (Button) rootView.findViewById(R.id.buttonPrevious);

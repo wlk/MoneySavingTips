@@ -26,7 +26,7 @@ public class TipAdapter extends ArrayAdapter<Tip> {
         TextView tt = (TextView) v.findViewById(R.id.title);
 
         if (tt != null) {
-            tt.setText(t.getId()+1 + ". " + t.getName());
+            tt.setText(t.getId() + 1 + ". " + t.getName());
         }
 
         return v;

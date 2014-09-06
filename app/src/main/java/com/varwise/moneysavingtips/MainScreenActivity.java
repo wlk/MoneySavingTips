@@ -1,11 +1,8 @@
 package com.varwise.moneysavingtips;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,19 +58,28 @@ public class MainScreenActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        if (id == R.id.action_settings) {
+            AboutDialog about = new AboutDialog(this);
+            about.setTitle("About Money Saving Tips");
+            about.show();
+            return true;
+        } else if (id == R.id.action_about) {
+            AboutDialog about = new AboutDialog(this);
+            about.setTitle("Settings");
+            about.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
-    public void onClickRandom(View v){
+    public void onClickRandom(View v) {
         int max = adapter.getCount();
         Random r = new Random();
         startSpecificDetailActivity(r.nextInt(max));
-
     }
 
-    public void startSpecificDetailActivity(int position){
+    public void startSpecificDetailActivity(int position) {
         Intent intent = fragment.getIntentForTip(position);
         startActivity(intent);
     }
-
 }

@@ -7,6 +7,9 @@
     <string name="previous">&lt;&lt;</string>
     <string name="next">&gt;&gt;</string>
     <string name="random">Random Tip</string>
+    <string name="action_about">About</string>
+    <string name="action_share">Share</string>
+    <string name="share_using">Share Using</string>
 
     <string-array name="tips">
         <item>item pierwszy\tasdfwwwwwwwwwwwwwwwwww\n\n\n\n\n\nwwwwwwwwwwwwwwwww\n\n\nwww\n\n\www\n\n\n\n\nwwwwww</item>

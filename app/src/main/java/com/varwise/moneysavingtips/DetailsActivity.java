@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ShareActionProvider;
 
 
 public class DetailsActivity extends Activity {
+    private static final String TAG = "DetailsActivity";
     private int tipId;
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,7 @@ public class DetailsActivity extends Activity {
             tipId = Integer.parseInt(intent.getStringExtra(MainScreenActivity.EXTRA_TIP_ID));
             String name = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_NAME);
 
-            setTitle("Tip " + (tipId+1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
+            setTitle("Tip " + (tipId + 1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
             getFragmentManager().beginTransaction().add(R.id.container, f).commit();
         }
@@ -34,29 +37,36 @@ public class DetailsActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.details, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.details_screen, menu);
+
+        MenuItem item = menu.findItem(R.id.action_share);
+        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+        String shareBody = "http://bit.ly/1upOr3Q " + MainScreenActivity.adapter.getTipText(tipId);
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Money Saving Tip");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(sharingIntent);
+        }
+
+        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
-    }
-
-    public void onClickPrevious(View v){
+    public void onClickPrevious(View v) {
         replaceFragmentWithNewTip(tipId - 1);
     }
 
-    public void onClickNext(View v){
+    public void onClickNext(View v) {
         replaceFragmentWithNewTip(tipId + 1);
     }
 
     public void replaceFragmentWithNewTip(int newTipId) {
-        if(newTipId < 0){
-            newTipId = MainScreenActivity.adapter.getCount()-1;
+        if (newTipId < 0) {
+            newTipId = MainScreenActivity.adapter.getCount() - 1;
         }
-        if(newTipId > MainScreenActivity.adapter.getCount()-1){
+        if (newTipId > MainScreenActivity.adapter.getCount() - 1) {
             newTipId = 0;
         }
 
@@ -64,7 +74,7 @@ public class DetailsActivity extends Activity {
 
         f.setDetailsText(MainScreenActivity.adapter.getTipText(newTipId));
         String name = MainScreenActivity.adapter.getTipName(newTipId);
-        setTitle("Tip " + (newTipId+1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
+        setTitle("Tip " + (newTipId + 1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
         getFragmentManager().beginTransaction().replace(R.id.container, f).commit();
         tipId = newTipId;
