@@ -49,10 +49,10 @@ public class DetailsActivity extends Activity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
-            AdView adView = (AdView)rootView.findViewById(R.id.adViewMainScreen);
+            AdView adView = (AdView) rootView.findViewById(R.id.adViewMainScreen);
             AdRequest adRequest = new AdRequest.Builder()
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                     .build();
