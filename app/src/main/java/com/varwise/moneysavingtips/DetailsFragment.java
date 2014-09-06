@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdView;
 
 public class DetailsFragment extends Fragment {
     private String detailsText = "";
+    private String nameText = "";
 
     public DetailsFragment() { }
 
@@ -27,7 +28,7 @@ public class DetailsFragment extends Fragment {
         Button previousButton = (Button) rootView.findViewById(R.id.buttonPrevious);
         Button nextButton = (Button) rootView.findViewById(R.id.buttonNext);
 
-        tv.setText(detailsText);
+        tv.setText(nameText + "\n\n" + detailsText);
 
         adView.loadAd(adRequest);
         return rootView;
@@ -37,4 +38,7 @@ public class DetailsFragment extends Fragment {
         this.detailsText = detailsText;
     }
 
+    public void setNameText(String nameText) {
+        this.nameText = nameText;
+    }
 }

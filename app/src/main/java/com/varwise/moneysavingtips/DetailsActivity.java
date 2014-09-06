@@ -26,8 +26,10 @@ public class DetailsActivity extends Activity {
             String message = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_TEXT);
             f.setDetailsText(message);
 
+
             tipId = Integer.parseInt(intent.getStringExtra(MainScreenActivity.EXTRA_TIP_ID));
             String name = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_NAME);
+            f.setNameText(name);
 
             setTitle("Tip " + (tipId + 1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
@@ -79,6 +81,7 @@ public class DetailsActivity extends Activity {
 
         f.setDetailsText(MainScreenActivity.adapter.getTipText(newTipId));
         String name = MainScreenActivity.adapter.getTipName(newTipId);
+        f.setNameText(name);
         setTitle("Tip " + (newTipId + 1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
         getFragmentManager().beginTransaction().replace(R.id.container, f).commit();
