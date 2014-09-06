@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.varwise.moneysavingtips.R;
 import com.varwise.moneysavingtips.Tip;
 
-
 public class TipAdapter extends ArrayAdapter<Tip> {
 
     public TipAdapter(Context context, int resource, Tip[] objects) {

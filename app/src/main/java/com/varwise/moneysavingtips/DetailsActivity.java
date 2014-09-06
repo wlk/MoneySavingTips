@@ -58,13 +58,13 @@ public class DetailsActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_details, container, false);
 
-            AdView adView = (AdView) rootView.findViewById(R.id.adViewMainScreen);
+            AdView adView = (AdView) rootView.findViewById(R.id.adViewDetails);
             AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-
-            adView.loadAd(adRequest);
 
             TextView tv = (TextView) rootView.findViewById(R.id.detailsText);
             tv.setText(detailsText);
+
+            adView.loadAd(adRequest);
             return rootView;
         }
 

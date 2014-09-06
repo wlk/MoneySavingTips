@@ -13,9 +13,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.varwise.moneysavingtips.util.TipAdapter;
 
-/**
- * Created by w on 06.09.14.
- */
 public class PlaceholderFragment extends Fragment implements AdapterView.OnItemClickListener {
     private TipAdapter adapter;
 
@@ -38,7 +35,6 @@ public class PlaceholderFragment extends Fragment implements AdapterView.OnItemC
         AdView adView = (AdView) rootView.findViewById(R.id.adViewMainScreen);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         adView.loadAd(adRequest);
-
 
         return rootView;
     }
