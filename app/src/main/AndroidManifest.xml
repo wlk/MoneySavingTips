@@ -28,7 +28,6 @@
 
         <activity
             android:name=".DetailsActivity"
-            android:label="@string/title_activity_details"
             android:parentActivityName=".MainScreenActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

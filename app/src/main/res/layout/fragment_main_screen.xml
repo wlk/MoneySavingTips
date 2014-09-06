@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:paddingBottom="@dimen/activity_vertical_margin"
 
     tools:context=".MainScreenActivity$PlaceholderFragment">
 
@@ -15,13 +14,33 @@
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-5829945009169600/2299008761" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/random"
+        android:id="@+id/buttonRandom"
+        android:layout_weight="1"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:onClick="onRandom"
+        style="@style/button_text"
+        android:background="@drawable/button"
+        android:layout_alignParentBottom="true"
+        />
+
     <ListView
         android:id="@+id/lvMainScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/adViewMainScreen"
+        android:layout_above="@id/buttonRandom"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin" />
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        />
+
+
+
 
 </RelativeLayout>

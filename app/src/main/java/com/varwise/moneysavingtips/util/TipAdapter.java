@@ -35,4 +35,8 @@ public class TipAdapter extends ArrayAdapter<Tip> {
     public String getTipText(int position) {
         return getItem(position).getText();
     }
+
+    public String getTipName(int position) {
+        return getItem(position).getName();
+    }
 }

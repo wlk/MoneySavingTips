@@ -27,6 +27,11 @@ public class DetailsActivity extends Activity {
             Intent intent = getIntent();
             String message = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_TEXT);
             f.setDetailsText(message);
+            String id = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_ID);
+            String name = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_NAME);
+
+
+            setTitle("Tip " + id + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
             getFragmentManager().beginTransaction().add(R.id.container, f).commit();
         }
@@ -42,10 +47,7 @@ public class DetailsActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -68,9 +70,6 @@ public class DetailsActivity extends Activity {
             return rootView;
         }
 
-        public String getDetailsText() {
-            return detailsText;
-        }
 
         public void setDetailsText(String detailsText) {
             this.detailsText = detailsText;

@@ -13,10 +13,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.varwise.moneysavingtips.util.TipAdapter;
 
-public class PlaceholderFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ListViewFragment extends Fragment implements AdapterView.OnItemClickListener {
     private TipAdapter adapter;
 
-    public PlaceholderFragment() {
+    public ListViewFragment() {
     }
 
     public void setAdapter(TipAdapter adapter) {
@@ -44,8 +44,10 @@ public class PlaceholderFragment extends Fragment implements AdapterView.OnItemC
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
         String tipText = adapter.getTipText(position);
+        String tipName = adapter.getTipName(position);
         intent.putExtra(MainScreenActivity.EXTRA_TIP_TEXT, tipText);
-
+        intent.putExtra(MainScreenActivity.EXTRA_TIP_NAME, tipName);
+        intent.putExtra(MainScreenActivity.EXTRA_TIP_ID, String.valueOf(position+1));
         startActivity(intent);
 
     }

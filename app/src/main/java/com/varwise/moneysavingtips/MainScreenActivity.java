@@ -9,8 +9,10 @@ import com.varwise.moneysavingtips.util.TipAdapter;
 
 
 public class MainScreenActivity extends Activity {
+    public static final String EXTRA_TIP_NAME = "TIP_NAME";
     public static String TAG = "MainScreenActivity";
     public static String EXTRA_TIP_TEXT = "TIP_TEXT";
+    public static String EXTRA_TIP_ID = "TIP_ID";
 
 
     @Override
@@ -22,7 +24,7 @@ public class MainScreenActivity extends Activity {
         setContentView(R.layout.activity_main_screen);
 
         if (savedInstanceState == null) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+            ListViewFragment fragment = new ListViewFragment();
             fragment.setAdapter(adapter);
             getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
         }
@@ -51,10 +53,7 @@ public class MainScreenActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
 }
