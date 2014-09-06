@@ -41,7 +41,12 @@ public class DetailsActivity extends Activity {
 
         MenuItem item = menu.findItem(R.id.action_share);
         mShareActionProvider = (ShareActionProvider) item.getActionProvider();
-        String shareBody = "http://bit.ly/1upOr3Q " + MainScreenActivity.adapter.getTipText(tipId);
+        String toShare = "http://bit.ly/1upOr3Q " + MainScreenActivity.adapter.getTipText(tipId);
+        String shareBody = toShare.substring(0, Math.min(135, toShare.length()));
+        if(toShare.length() > 135){
+            shareBody = shareBody + "...";
+        }
+
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Money Saving Tip");

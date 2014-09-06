@@ -12,53 +12,18 @@
     <string name="share_using">Share Using</string>
 
     <string-array name="tips">
-        <item>item pierwszy\tasdfwwwwwwwwwwwwwwwwww\n\n\n\n\n\nwwwwwwwwwwwwwwwww\n\n\nwww\n\n\www\n\n\n\n\nwwwwww</item>
-        <item>Switch your bank accounts to a bank that respects you\tYou shouldn’t be spending your hard-earned money on maintenance fees – you also should be earning some serious interest on your checking and savings accounts. Interest rates are not what they once were, but some of the best free checking accounts and best savings accounts can be found online</item>
-        <item>Turn off the television\tOne big way to save money is to watch less television. There are a lot of financial benefits to this: less exposure to guilt-inducing ads, more time to focus on other things in life, less electrical use, and so on. It’s great to unwind in the evening, but seek another hobby to do that.</item>
-        <item>Turn a critical eye to your "collections"\tMost people collect something – what do you collect? Is it something that consistently brings you joy?\nOr is it something that you just do out of habit at this point? Does the collection itself have value? Could you perhaps “trim the fat” from this collection by getting rid of duplicates or getting rid of the items you no longer use? Also, could you perhaps cut down on your spending on that hobby? Focus on trimming the things you don’t feel strongly about – if you dig into things that bother you, you’re going to eventually relapse.</item>
-        <item>Make your own gifts instead of buying stuff from the store\tYou can make food mixes, candles, bread, cookies, soap, and all kinds of other things at home quite easily and inexpensively. These make spectacular gifts for others because they involve your homemade touch, plus quite often they’re consumable, meaning they don’t wind up filling someone’s closet with junk. Even better – include a personal handwritten note with the gift. This will make it even more special than anything you could possibly buy down at the mall, plus it saves you money.</item>
-        <item>Master the thirty day rule\tWhenever you’re considering making an unnecessary purchase, wait thirty days and then ask yourself if you still want that item. Quite often, you’ll find that the urge to buy has passed and you’ll have saved yourself some money by simply waiting. If you want, you can even keep a “thirty day list” where you write down the item and the day you’ll reconsider it, but I prefer just to keep this one in my head – that way, I often just forget about the unimportant things.</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>Shopping list\tAlways go shopping with a prepared list of items to buy. Make sure you stick to the list!</item>
+        <item>Don\'t overspend on food\tPrepare your standard \"shopping basked\", compare different stores to find one where you can buy all items the cheapest</item>
+        <item>Limit sugar\tLimiting sugar will help both: your budget and your body</item>
+        <item>Limit eating out\tTry to limit eating out as much as possible. This will help you to save a lot of money, and you will also quickly find out that preparing food at home can be very enjoyable.\nOne of the biggest money sucking eating out habit is coffee.</item>
+        <item>Consider online shopping\tWe all are accustomed to buying electronics online, but recently it\'s becoming more popular to buy grocery online, checkout different online stores and compare their offers, you will save both money and time!</item>
+        <item>Browse supplies regularly\tMake sure to browse all your home food supplies regularly to avoid unnecessary past food, this both helps to limit wasted food and will help you save some money. Review your supplies for example weekly and move all items getting close to expiration date to the front of the shelves</item>
+        <item>Buy a water filter\tInstead of buying bottled water it\'s worth investing in a water filter and reusable bottle with a built-in carbon filter</item>
+        <item>Test cheap food\tDo not believe in the word that \"the brand is better\". Often, the same products are offered under the brand name supermarkets. Read ingredients, check if it\'s the same manufacturer, buy for test and decide yourself whether you satisfy the product for half the price without the logo.</item>
+        <item>Change bank account for the one without fees\tBanks change their offer quite frequently, and we should react and change banks. Loyalty in this sector - does not pay.</item>
+        <item>Close the unused bank accounts\tIf you have a account bank account that is unnecessary - close them because maybe you limit the possibility to take advantage of the promotion for new customers. Additionally when bank changes their fees, you won\'t be affected</item>
+        <item>Use the bonus moneyback\tSome banks support your loyalty - make sure to check your bank offer. Heavy use of the services of the bank (transfer salaries, purchases with debit cards) give you the chance for bonuses of some banks. Earnings depend on the earnings and creativity.</item>
+        <item>Repay the loans in other currencies using currency bought online\tInternet Exchange offices have a low spread (the difference between the buying and selling) so that you earn as much as 10 cents on every-selling 1 euro. This will make a lot of difference if you have a lot of loans</item>
     </string-array>
 
 </resources>
