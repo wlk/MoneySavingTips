@@ -1,28 +1,28 @@
 package com.varwise.moneysavingtips;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.varwise.moneysavingtips.util.TipAdapter;
 
 /**
-* Created by w on 06.09.14.
-*/
+ * Created by w on 06.09.14.
+ */
 public class PlaceholderFragment extends Fragment implements AdapterView.OnItemClickListener {
-    public String[] titles;
-    private ListAdapter adapter;
+    private TipAdapter adapter;
 
     public PlaceholderFragment() {
     }
 
-    public void setAdapter(ListAdapter adapter) {
+    public void setAdapter(TipAdapter adapter) {
         this.adapter = adapter;
     }
 
@@ -43,12 +43,14 @@ public class PlaceholderFragment extends Fragment implements AdapterView.OnItemC
         return rootView;
     }
 
-    public void setTitles(String[] titles) {
-        this.titles = titles;
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
+        String tipText = adapter.getTipText(position);
+        intent.putExtra(MainScreenActivity.EXTRA_TIP_TEXT, tipText);
+
+        startActivity(intent);
 
     }
 }

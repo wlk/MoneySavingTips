@@ -27,9 +27,13 @@ public class TipAdapter extends ArrayAdapter<Tip> {
         TextView tt = (TextView) v.findViewById(R.id.title);
 
         if (tt != null) {
-            tt.setText(t.getName());
+            tt.setText(t.getId() + ". " + t.getName());
         }
 
         return v;
+    }
+
+    public String getTipText(int position) {
+        return getItem(position).getText();
     }
 }

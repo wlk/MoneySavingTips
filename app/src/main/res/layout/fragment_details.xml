@@ -16,6 +16,7 @@
         ads:adUnitId="ca-app-pub-5829945009169600/3775741969" />
 
     <TextView
+        android:id="@+id/detailsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"

@@ -2,19 +2,16 @@ package com.varwise.moneysavingtips;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.varwise.moneysavingtips.util.TipAdapter;
 
-import java.util.Arrays;
-
 
 public class MainScreenActivity extends Activity {
     public static String TAG = "MainScreenActivity";
+    public static String EXTRA_TIP_TEXT = "TIP_TEXT";
     public Tip[] tips;
-    public String[] titles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +23,21 @@ public class MainScreenActivity extends Activity {
 
         for (int i = 0; i < inputTips.length; ++i) {
             if (inputTips[i].equals("") || inputTips[i] == null || inputTips[i].split("\\t").length != 2) {
-                tips[i] = new Tip("", "");
+                tips[i] = new Tip("", "", i + 1);
             } else {
-                tips[i] = new Tip(i + 1 + ". " + inputTips[i].split("\\t")[0], inputTips[i].split("\\t")[1]);
+                tips[i] = new Tip(inputTips[i].split("\\t")[0], inputTips[i].split("\\t")[1], i + 1);
             }
         }
+        inputTips = null;
 
         adapter = new TipAdapter(getApplicationContext(), R.layout.list_item, tips);
 
-        Log.d(TAG, Arrays.toString(titles));
+        //Log.d(TAG, Arrays.toString(titles));
 
         setContentView(R.layout.activity_main_screen);
-        if (savedInstanceState == null) {
 
+        if (savedInstanceState == null) {
             PlaceholderFragment fragment = new PlaceholderFragment();
-            fragment.setTitles(titles);
             fragment.setAdapter(adapter);
             getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
         }
