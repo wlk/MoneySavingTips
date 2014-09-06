@@ -39,7 +39,6 @@ public class ListViewFragment extends Fragment implements AdapterView.OnItemClic
         return rootView;
     }
 
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = getIntentForTip(position);

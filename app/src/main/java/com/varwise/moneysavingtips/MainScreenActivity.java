@@ -73,7 +73,6 @@ public class MainScreenActivity extends Activity {
 
     public void startSpecificDetailActivity(int position){
         Intent intent = fragment.getIntentForTip(position);
-
         startActivity(intent);
     }
 

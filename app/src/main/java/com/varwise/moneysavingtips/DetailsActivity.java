@@ -10,6 +10,7 @@ import android.view.View;
 
 public class DetailsActivity extends Activity {
     private int tipId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,9 @@ public class DetailsActivity extends Activity {
 
     public void replaceFragmentWithNewTip(int newTipId) {
         if(newTipId < 0){
+            newTipId = MainScreenActivity.adapter.getCount()-1;
+        }
+        if(newTipId > MainScreenActivity.adapter.getCount()-1){
             newTipId = 0;
         }
 
