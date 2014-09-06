@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.varwise.moneysavingtips.DetailsActivity$PlaceholderFragment"
+    tools:context="com.varwise.moneysavingtips.DetailsActivity.DetailsFragment"
     android:id="@+id/detailsRelativeLayout">
 
     <com.google.android.gms.ads.AdView
@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
-            android:onClick="onPrevious"
+            android:onClick="onClickPrevious"
             style="@style/button_text"
             android:background="@drawable/button"/>
 
@@ -44,7 +44,7 @@
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:onClick="onNext"
+            android:onClick="onClickNext"
             style="@style/button_text"
             android:background="@drawable/button"/>
 

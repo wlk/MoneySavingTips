@@ -2,13 +2,17 @@ package com.varwise.moneysavingtips;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.varwise.moneysavingtips.util.TipAdapter;
+
+import java.util.Random;
 
 
 public class MainScreenActivity extends Activity {
@@ -16,18 +20,19 @@ public class MainScreenActivity extends Activity {
     public static String TAG = "MainScreenActivity";
     public static String EXTRA_TIP_TEXT = "TIP_TEXT";
     public static String EXTRA_TIP_ID = "TIP_ID";
-
+    public static TipAdapter adapter;
+    ListViewFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        TipAdapter adapter = new TipAdapter(getApplicationContext(), R.layout.list_item, getTipsFromXMLResource());
+        adapter = new TipAdapter(getApplicationContext(), R.layout.list_item, getTipsFromXMLResource());
 
         setContentView(R.layout.activity_main_screen);
 
         if (savedInstanceState == null) {
-            ListViewFragment fragment = new ListViewFragment();
+            fragment = new ListViewFragment();
             fragment.setAdapter(adapter);
             getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
         }
@@ -39,9 +44,9 @@ public class MainScreenActivity extends Activity {
 
         for (int i = 0; i < inputTips.length; ++i) {
             if (inputTips[i].equals("") || inputTips[i] == null || inputTips[i].split("\\t").length != 2) {
-                tips[i] = new Tip("", "", i + 1);
+                tips[i] = new Tip("", "", i);
             } else {
-                tips[i] = new Tip(inputTips[i].split("\\t")[0], inputTips[i].split("\\t")[1], i + 1);
+                tips[i] = new Tip(inputTips[i].split("\\t")[0], inputTips[i].split("\\t")[1], i);
             }
         }
         return tips;
@@ -57,6 +62,19 @@ public class MainScreenActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
+
+    public void onClickRandom(View v){
+        int max = adapter.getCount();
+        Random r = new Random();
+        startSpecificDetailActivity(r.nextInt(max));
+
+    }
+
+    public void startSpecificDetailActivity(int position){
+        Intent intent = fragment.getIntentForTip(position);
+
+        startActivity(intent);
     }
 
 }

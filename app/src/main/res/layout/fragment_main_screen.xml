@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
-        android:onClick="onRandom"
+        android:onClick="onClickRandom"
         style="@style/button_text"
         android:background="@drawable/button"
         android:layout_alignParentBottom="true"

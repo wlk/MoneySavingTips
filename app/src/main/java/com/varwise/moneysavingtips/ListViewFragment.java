@@ -42,13 +42,18 @@ public class ListViewFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = getIntentForTip(position);
+        startActivity(intent);
+
+    }
+
+    public Intent getIntentForTip(int position) {
         Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
         String tipText = adapter.getTipText(position);
         String tipName = adapter.getTipName(position);
         intent.putExtra(MainScreenActivity.EXTRA_TIP_TEXT, tipText);
         intent.putExtra(MainScreenActivity.EXTRA_TIP_NAME, tipName);
-        intent.putExtra(MainScreenActivity.EXTRA_TIP_ID, String.valueOf(position+1));
-        startActivity(intent);
-
+        intent.putExtra(MainScreenActivity.EXTRA_TIP_ID, String.valueOf(position));
+        return intent;
     }
 }

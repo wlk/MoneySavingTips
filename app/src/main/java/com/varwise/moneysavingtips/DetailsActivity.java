@@ -1,42 +1,35 @@
 package com.varwise.moneysavingtips;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 
 public class DetailsActivity extends Activity {
-
+    private int tipId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
         if (savedInstanceState == null) {
-            PlaceholderFragment f = new PlaceholderFragment();
+            DetailsFragment f = new DetailsFragment();
 
             Intent intent = getIntent();
             String message = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_TEXT);
             f.setDetailsText(message);
-            String id = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_ID);
+
+            tipId = Integer.parseInt(intent.getStringExtra(MainScreenActivity.EXTRA_TIP_ID));
             String name = intent.getStringExtra(MainScreenActivity.EXTRA_TIP_NAME);
 
-
-            setTitle("Tip " + id + ": " + name.substring(0, Math.min(25, name.length())) + "...");
+            setTitle("Tip " + (tipId+1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
             getFragmentManager().beginTransaction().add(R.id.container, f).commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,29 +43,26 @@ public class DetailsActivity extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
-    public static class PlaceholderFragment extends Fragment {
-        private String detailsText = "";
+    public void onClickPrevious(View v){
+        replaceFragmentWithNewTip(tipId - 1);
+    }
 
-        public PlaceholderFragment() {
+    public void onClickNext(View v){
+        replaceFragmentWithNewTip(tipId + 1);
+    }
+
+    public void replaceFragmentWithNewTip(int newTipId) {
+        if(newTipId < 0){
+            newTipId = 0;
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_details, container, false);
+        DetailsFragment f = new DetailsFragment();
 
-            AdView adView = (AdView) rootView.findViewById(R.id.adViewDetails);
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("2D7D6AE8606296EB97A2A9B3681B90F6").build();
+        f.setDetailsText(MainScreenActivity.adapter.getTipText(newTipId));
+        String name = MainScreenActivity.adapter.getTipName(newTipId);
+        setTitle("Tip " + (newTipId+1) + ": " + name.substring(0, Math.min(25, name.length())) + "...");
 
-            TextView tv = (TextView) rootView.findViewById(R.id.detailsText);
-            tv.setText(detailsText);
-
-            adView.loadAd(adRequest);
-            return rootView;
-        }
-
-
-        public void setDetailsText(String detailsText) {
-            this.detailsText = detailsText;
-        }
+        getFragmentManager().beginTransaction().replace(R.id.container, f).commit();
+        tipId = newTipId;
     }
 }
