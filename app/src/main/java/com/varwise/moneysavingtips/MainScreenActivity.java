@@ -7,9 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.varwise.moneysavingtips.util.TipAdapter;
 
 import java.util.Random;
+
+import hotchemi.android.rate.AppRate;
 
 
 public class MainScreenActivity extends Activity {
@@ -19,6 +24,9 @@ public class MainScreenActivity extends Activity {
     public static String EXTRA_TIP_ID = "TIP_ID";
     public static TipAdapter adapter;
     ListViewFragment fragment;
+    public static int totalAdsThisRun = 0;
+    public static GoogleAnalytics analytics;
+    public static Tracker tracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +35,36 @@ public class MainScreenActivity extends Activity {
         adapter = new TipAdapter(getApplicationContext(), R.layout.list_item, getTipsFromXMLResource());
 
         setContentView(R.layout.activity_main_screen);
+        setupGoogleAnalytics();
+
+        maybeShowAppRate();
 
         if (savedInstanceState == null) {
             fragment = new ListViewFragment();
             fragment.setAdapter(adapter);
             getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
         }
+    }
+
+    private void setupGoogleAnalytics(){
+        analytics = GoogleAnalytics.getInstance(this);
+        analytics.setLocalDispatchPeriod(1800);
+        tracker = analytics.newTracker(getResources().getString(R.string.googleAnalytics));
+        tracker.enableExceptionReporting(true);
+        tracker.enableAdvertisingIdCollection(true);
+        tracker.enableAutoActivityTracking(true);
+    }
+
+    private void maybeShowAppRate(){
+        AppRate.with(this)
+                .setInstallDays(1)
+                .setLaunchTimes(2)
+                .setRemindInterval(1)
+                .setShowNeutralButton(true)
+                .setDebug(false)
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     private Tip[] getTipsFromXMLResource() {
@@ -73,6 +105,7 @@ public class MainScreenActivity extends Activity {
     }
 
     public void onClickRandom(View v) {
+        tracker.send(new HitBuilders.EventBuilder().setCategory("MainScreenActivity").setAction("click").setLabel("onClickRandom").build());
         int max = adapter.getCount();
         Random r = new Random();
         startSpecificDetailActivity(r.nextInt(max));

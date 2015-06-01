@@ -10,6 +10,7 @@
     <string name="action_about">About</string>
     <string name="action_share">Share</string>
     <string name="share_using">Share Using</string>
+    <string name="googleAnalytics">UA-54524356-8</string>
 
     <string-array name="tips">
         <item>Shopping list\tAlways go shopping with a prepared list of items to buy. Make sure you stick to the list!</item>

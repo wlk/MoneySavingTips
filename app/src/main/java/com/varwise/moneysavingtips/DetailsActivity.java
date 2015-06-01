@@ -8,16 +8,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ShareActionProvider;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 
 public class DetailsActivity extends Activity {
     private static final String TAG = "DetailsActivity";
     private int tipId;
-    private ShareActionProvider mShareActionProvider;
+    private InterstitialAd interstitial;
+    private Tracker t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        t = MainScreenActivity.tracker;
+        t.setScreenName(getLocalClassName());
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         if (savedInstanceState == null) {
             DetailsFragment f = new DetailsFragment();
@@ -42,7 +53,7 @@ public class DetailsActivity extends Activity {
         getMenuInflater().inflate(R.menu.details_screen, menu);
 
         MenuItem item = menu.findItem(R.id.action_share);
-        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+        ShareActionProvider mShareActionProvider = (ShareActionProvider) item.getActionProvider();
         String toShare = "http://bit.ly/1upOr3Q " + MainScreenActivity.adapter.getTipText(tipId);
         String shareBody = toShare.substring(0, Math.min(135, toShare.length()));
         if(toShare.length() > 135){
@@ -62,14 +73,38 @@ public class DetailsActivity extends Activity {
     }
 
     public void onClickPrevious(View v) {
+        t.send(new HitBuilders.EventBuilder().setCategory("DetailsActivity").setAction("click").setLabel("onClickPrevious").build());
         replaceFragmentWithNewTip(tipId - 1);
+        maybeShowInterstitial();
+
     }
 
     public void onClickNext(View v) {
+        t.send(new HitBuilders.EventBuilder().setCategory("DetailsActivity").setAction("click").setLabel("onClickNext").build());
         replaceFragmentWithNewTip(tipId + 1);
+        maybeShowInterstitial();
+    }
+
+    private void maybeShowInterstitial(){
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("0457F45F2F3B38D51216287AD98A2C3D").addTestDevice("3AC2DCEE575018317C028D0C93F19AD0").addTestDevice("2D7D6AE8606296EB97A2A9B3681B90F6").build();
+
+        if(MainScreenActivity.totalAdsThisRun > 10 && MainScreenActivity.totalAdsThisRun % 5 == 0) {
+            interstitial = new InterstitialAd(this);
+            interstitial.setAdUnitId("ca-app-pub-5829945009169600/3224943160");
+            interstitial.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    interstitial.show();
+                }
+            });
+
+            interstitial.loadAd(adRequest);
+        }
     }
 
     public void replaceFragmentWithNewTip(int newTipId) {
+        ++MainScreenActivity.totalAdsThisRun;
+
         if (newTipId < 0) {
             newTipId = MainScreenActivity.adapter.getCount() - 1;
         }
