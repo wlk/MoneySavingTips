@@ -27,6 +27,7 @@ public class MainScreenActivity extends Activity {
     public static int totalAdsThisRun = 0;
     public static GoogleAnalytics analytics;
     public static Tracker tracker;
+    private static final boolean appRateEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +57,17 @@ public class MainScreenActivity extends Activity {
     }
 
     private void maybeShowAppRate(){
-        AppRate.with(this)
-                .setInstallDays(1)
-                .setLaunchTimes(2)
-                .setRemindInterval(1)
-                .setShowNeutralButton(true)
-                .setDebug(false)
-                .monitor();
+        if(appRateEnabled){
+            AppRate.with(this)
+                    .setInstallDays(1)
+                    .setLaunchTimes(2)
+                    .setRemindInterval(1)
+                    .setShowNeutralButton(true)
+                    .setDebug(false)
+                    .monitor();
 
-        AppRate.showRateDialogIfMeetsConditions(this);
+            AppRate.showRateDialogIfMeetsConditions(this);
+        }
     }
 
     private Tip[] getTipsFromXMLResource() {
